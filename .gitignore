@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database (Keep local development databases out of GitHub)
+db.sqlite3
+db.sqlite3-journal
+
+# Python Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Environment variables and secrets (NEVER commit these)
+.env
+.secrets
+
+# Django collected static files and user media uploads
+static/
+media/
+
+# Log files
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDE specific settings (Optional but recommended)
+.vscode/
+.idea/
