@@ -4,8 +4,8 @@
 
 {% block main %}
 <div class="mb-6">
-  {% if book.id %}
-    <a href="{% url 'book_detail' book.id %}" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-indigo-600 transition-colors">
+  {% if form.instance.id %}
+    <a href="{% url 'book_detail' form.instance.id %}" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-indigo-600 transition-colors">
   {% else %}
     <a href="{% url 'book_list' %}" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-indigo-600 transition-colors">
   {% endif %}
@@ -23,8 +23,8 @@
 
       <h1 class="text-xl font-bold text-gray-900 mb-6">{{ action }} Book</h1>
 
-      {% if book.id %}
-        <form method="POST" action="{% url 'book_edit' book.id %}">
+      {% if form.instance.id %}
+        <form method="POST" action="{% url 'book_edit' form.instance.id %}">
       {% else %}
         <form method="POST" action="{% url 'book_create' %}">
       {% endif %}
@@ -33,71 +33,53 @@
         <div class="space-y-5">
 
           <div>
-            <label for="title" class="block text-sm font-medium text-gray-700 mb-1.5">Title</label>
+            <label for="{{ form.title.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1.5">Title</label>
             <input
               type="text"
-              id="title"
-              name="title"
-              value="{{ book.title }}"
+              id="{{ form.title.id_for_label }}"
+              name="{{ form.title.html_name }}"
+              value="{{ form.title.value|default:'' }}"
               required
               placeholder="e.g. The Pragmatic Programmer"
               class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
             />
+            {% if form.title.errors %}
+              <p class="mt-1 text-xs text-red-500">{{ form.title.errors|join:", " }}</p>
+            {% endif %}
           </div>
 
           <div>
-            <label for="author" class="block text-sm font-medium text-gray-700 mb-1.5">Author</label>
-            <input
-              type="text"
-              id="author"
-              name="author"
-              value="{{ book.author }}"
-              required
-              placeholder="e.g. Robert C. Martin"
-              class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
-            />
-          </div>
-
-          <div>
-            <label for="description" class="block text-sm font-medium text-gray-700 mb-1.5">Description</label>
+            <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1.5">Description</label>
             <textarea
-              id="description"
-              name="description"
+              id="{{ form.description.id_for_label }}"
+              name="{{ form.description.html_name }}"
               rows="4"
               required
               placeholder="A brief summary of the book…"
               class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition resize-none"
-            >{{ book.description }}</textarea>
+            >{{ form.description.value|default:'' }}</textarea>
+            {% if form.description.errors %}
+              <p class="mt-1 text-xs text-red-500">{{ form.description.errors|join:", " }}</p>
+            {% endif %}
           </div>
 
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label for="pages" class="block text-sm font-medium text-gray-700 mb-1.5">Pages</label>
-              <input
-                type="number"
-                id="pages"
-                name="pages"
-                value="{{ book.pages }}"
-                min="1"
-                required
-                placeholder="e.g. 350"
-                class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
-              />
-            </div>
-            <div>
-              <label for="price" class="block text-sm font-medium text-gray-700 mb-1.5">Price ($)</label>
-              <input
-                type="number"
-                id="price"
-                name="price"
-                value="{{ book.price }}"
-                min="0"
-                step="0.01"
-                required
-                placeholder="e.g. 29.99"
-                class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
-              />
-            </div>
+  <label for="{{ form.rate.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1.5">Rate</label>
+  <input
+    type="number"
+    id="{{ form.rate.id_for_label }}"
+    name="{{ form.rate.html_name }}"
+    value="{{ form.rate.value|default:0 }}"
+    min="0"
+    required
+    placeholder="e.g. 8"
+    class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition"
+  />
+  {% if form.rate.errors %}
+    <p class="mt-1 text-xs text-red-500">{{ form.rate.errors|join:", " }}</p>
+  {% endif %}
+</div>
           </div>
 
         </div>
@@ -113,8 +95,8 @@
             Save Book
           </button>
 
-          {% if book.id %}
-            <a href="{% url 'book_detail' book.id %}" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">Cancel</a>
+          {% if form.instance.id %}
+            <a href="{% url 'book_detail' form.instance.id %}" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">Cancel</a>
           {% else %}
             <a href="{% url 'book_list' %}" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">Cancel</a>
           {% endif %}

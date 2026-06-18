@@ -28,9 +28,8 @@ PageTurner{% endblock %} {% block main %}
       <h1 class="text-xl font-bold text-gray-900">Delete this book?</h1>
       <p class="mt-2 text-sm text-gray-500">
         You are about to permanently remove
-        <span class="font-semibold text-gray-800">{{ book.title }}</span>
-        by <span class="font-semibold text-gray-800">{{ book.author }}</span>.
-        This action cannot be undone.
+        <span class="font-semibold text-gray-800">{{ book.title }}</span>. This
+        action cannot be undone.
       </p>
 
       <div
@@ -40,15 +39,10 @@ PageTurner{% endblock %} {% block main %}
           <span class="font-medium text-gray-700">Title:</span> {{ book.title }}
         </p>
         <p class="mt-1">
-          <span class="font-medium text-gray-700">Author:</span> {{ book.author
-          }}
+          <span class="font-medium text-gray-700">Rate:</span> ⭐ {{ book.rate}}
         </p>
         <p class="mt-1">
-          <span class="font-medium text-gray-700">Pages:</span> {{ book.pages }}
-        </p>
-        <p class="mt-1">
-          <span class="font-medium text-gray-700">Price:</span> ${{ book.price
-          }}
+          <span class="font-medium text-gray-700">Views:</span> {{ book.views }}
         </p>
       </div>
 

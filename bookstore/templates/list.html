@@ -39,33 +39,14 @@
       <h2 class="text-base font-semibold text-gray-900 leading-snug">
         {{ book.title }}
       </h2>
-      <p class="mt-1 text-sm text-indigo-600 font-medium">{{ book.author }}</p>
 
       <p class="mt-3 text-sm text-gray-500 line-clamp-3 flex-1">
         {{ book.description }}
       </p>
 
       <div class="mt-4 flex items-center gap-4 text-xs text-gray-400">
-        <span class="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-3.5 w-3.5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9 12h6m-3-3v6M4 6h16M4 10h16M4 14h10"
-            />
-          </svg>
-          {{ book.pages }} pages
-        </span>
-        <span class="ml-auto text-base font-bold text-gray-800"
-          >${{ book.price }}</span
-        >
+        <span class="flex items-center gap-1"> ⭐ {{ book.rate }} </span>
+        <span class="flex items-center gap-1"> 👁 {{ book.views }} views </span>
       </div>
 
       <div class="mt-5 flex items-center gap-2">

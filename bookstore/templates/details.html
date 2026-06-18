@@ -34,14 +34,11 @@ PageTurner{%endblock %} {% block main %}
     >
       <div>
         <h1 class="text-2xl font-bold text-gray-900">{{ book.title }}</h1>
-        <p class="mt-1 text-base text-indigo-600 font-medium">
-          {{ book.author }}
-        </p>
       </div>
       <span
         class="inline-flex h-fit items-center rounded-full bg-indigo-50 px-4 py-1.5 text-lg font-bold text-indigo-700 ring-1 ring-inset ring-indigo-200 whitespace-nowrap"
       >
-        ${{ book.price }}
+        ⭐ {{ book.rate }}
       </span>
     </div>
 
@@ -60,14 +57,14 @@ PageTurner{%endblock %} {% block main %}
 
     <hr class="my-6 border-gray-100" />
 
-    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+    <div class="grid grid-cols-2 gap-4">
       <div class="rounded-lg bg-gray-50 px-4 py-3">
-        <p class="text-xs text-gray-400 uppercase tracking-wider">Pages</p>
-        <p class="mt-1 text-xl font-bold text-gray-800">{{ book.pages }}</p>
+        <p class="text-xs text-gray-400 uppercase tracking-wider">Rate</p>
+        <p class="mt-1 text-xl font-bold text-gray-800">{{ book.rate }}</p>
       </div>
       <div class="rounded-lg bg-gray-50 px-4 py-3">
-        <p class="text-xs text-gray-400 uppercase tracking-wider">Price</p>
-        <p class="mt-1 text-xl font-bold text-gray-800">${{ book.price }}</p>
+        <p class="text-xs text-gray-400 uppercase tracking-wider">Views</p>
+        <p class="mt-1 text-xl font-bold text-gray-800">{{ book.views }}</p>
       </div>
     </div>
 
