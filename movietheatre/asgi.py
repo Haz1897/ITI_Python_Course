@@ -1,5 +1,5 @@
 """
-ASGI config for lab project.
+ASGI config for movietheatre project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'lab.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'movietheatre.settings')
 
 application = get_asgi_application()
